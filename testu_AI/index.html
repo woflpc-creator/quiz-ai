@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Quiz Mokymosi Sistema</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="home-screen" class="screen active">
+            <div class="container">
+                <div class="header">
+                    <div class="logo">🧠</div>
+                    <h1>AI Quiz Sistema</h1>
+                    <p class="subtitle">Mokykis bet kokios temos su AI pagalba</p>
+                </div>
+                <div class="card">
+                    <div class="form-group">
+                        <label for="topic-input">Įveskite temą:</label>
+                        <input type="text" id="topic-input" placeholder="pvz. Biologijos ląstelės, Lietuvos istorija...">
+                    </div>
+                    <div class="form-group">
+                        <label>Pasirinkite sunkumą:</label>
+                        <div class="difficulty-buttons">
+                            <button class="diff-btn" data-difficulty="easy">😊 Lengvas</button>
+                            <button class="diff-btn active" data-difficulty="medium">🎯 Vidutinis</button>
+                            <button class="diff-btn" data-difficulty="hard">🔥 Sunkus</button>
+                        </div>
+                    </div>
+                    <button id="start-quiz-btn" class="primary-btn">
+                        <span class="btn-text">Pradėti Quiz</span>
+                        <span class="loader hidden"></span>
+                    </button>
+                </div>
+                <div id="history-card" class="card history-section hidden">
+                    <div class="history-header">🏆 <h2>Istorija</h2></div>
+                    <div id="history-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="screen">
+            <div class="container">
+                <div class="card">
+                    <div class="quiz-header">
+                        <span id="question-number">Klausimas 1 iš 5</span>
+                        <div class="timer" id="timer">⏱️ <span id="time-left">60s</span></div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <h2 class="question-text" id="question-text"></h2>
+                    <div id="answer-section"></div>
+                    <div id="feedback-section" class="feedback hidden"></div>
+                    <div class="quiz-actions">
+                        <button id="submit-answer-btn" class="primary-btn">Pateikti atsakymą</button>
+                        <button id="next-question-btn" class="primary-btn hidden">Kitas klausimas</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="results-screen" class="screen">
+            <div class="container">
+                <div class="card results-card">
+                    <div class="trophy">🏆</div>
+                    <h1>Quiz Baigtas!</h1>
+                    <p class="results-topic" id="results-topic"></p>
+                    <div class="score-display">
+                        <div class="score-percentage" id="score-percentage">0%</div>
+                        <p class="score-text" id="score-text">0 iš 0 teisingų atsakymų</p>
+                    </div>
+                    <p class="grade-message" id="grade-message"></p>
+                    <button id="new-quiz-btn" class="primary-btn">Bandyti kitą Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

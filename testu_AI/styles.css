@@ -1,0 +1,384 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #1F2937;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+.header {
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+}
+
+.logo {
+    font-size: 64px;
+    margin-bottom: 1rem;
+}
+
+.header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    opacity: 0.9;
+}
+
+.card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4F46E5;
+}
+
+.difficulty-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+.diff-btn {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #F9FAFB;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.diff-btn:hover {
+    background: #E5E7EB;
+}
+
+.diff-btn.active {
+    background: #4F46E5;
+    color: white;
+    transform: scale(1.05);
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #4F46E5 0%, #9333EA 100%);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.primary-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.primary-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.loader {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.history-section {
+    animation: fadeIn 0.5s;
+}
+
+.history-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: #F9FAFB;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.history-info h3 {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.history-info p {
+    font-size: 0.875rem;
+    color: #6B7280;
+}
+
+.history-score .percentage {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #4F46E5;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: #6B7280;
+}
+
+.timer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.timer.warning {
+    color: #EF4444;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #F9FAFB;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #4F46E5;
+    transition: width 0.3s;
+}
+
+.question-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.answer-options {
+    margin-bottom: 1.5rem;
+}
+
+.answer-option {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 0.5rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 0.75rem;
+}
+
+.answer-option:hover:not(:disabled) {
+    border-color: #4F46E5;
+    background: #EEF2FF;
+}
+
+.answer-option.selected {
+    border-color: #4F46E5;
+    background: #EEF2FF;
+}
+
+.answer-option.correct {
+    border-color: #10B981;
+    background: #D1FAE5;
+}
+
+.answer-option.incorrect {
+    border-color: #EF4444;
+    background: #FEE2E2;
+}
+
+.short-answer-input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.short-answer-input:focus {
+    outline: none;
+    border-color: #4F46E5;
+}
+
+.feedback {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    animation: slideDown 0.3s;
+}
+
+.feedback.correct {
+    background: #D1FAE5;
+    border: 2px solid #10B981;
+}
+
+.feedback.incorrect {
+    background: #FEE2E2;
+    border: 2px solid #EF4444;
+}
+
+.feedback-header {
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.feedback p {
+    margin-bottom: 0.5rem;
+}
+
+.results-card {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.trophy {
+    font-size: 80px;
+    margin-bottom: 1rem;
+}
+
+.results-card h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.results-topic {
+    color: #6B7280;
+    margin-bottom: 2rem;
+}
+
+.score-display {
+    background: linear-gradient(135deg, #EEF2FF 0%, #F3E8FF 100%);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.score-percentage {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #4F46E5;
+    margin-bottom: 0.5rem;
+}
+
+.score-text {
+    font-size: 1.25rem;
+}
+
+.grade-message {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 1rem;
+    }
+    .header h1 {
+        font-size: 2rem;
+    }
+    .difficulty-buttons {
+        grid-template-columns: 1fr;
+    }
+}
