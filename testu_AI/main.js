@@ -277,14 +277,17 @@ async function finishQuiz() {
             body: JSON.stringify({
                 topic: currentQuiz.topic,
                 difficulty: currentQuiz.difficulty,
-                results: currentQuiz.userAnswers
+                results: currentQuiz.userAnswers.map(a => [
+                    a.question,
+                    a.user_answer,
+                    a.is_correct
+                ])
             })
         });
 
         const data = await response.json();
 
         if (data.success) {
-            // Display backend score and grade only
             displayResults(data.score, data.grade);
             loadHistory();
         }
@@ -299,6 +302,28 @@ async function finishQuiz() {
 
         displayResults(score, 'Nepavyko gauti galutinio įvertinimo');
     }
+}
+
+function displayResults(score, grade) {
+    showScreen('results-screen');
+    
+    // Display difficulty in Lithuanian
+    const difficultyText = {
+        'easy': 'Lengvas',
+        'medium': 'Vidutinis',
+        'hard': 'Sunkus'
+    };
+    
+    document.getElementById('results-topic').textContent = 
+        `Tema: ${currentQuiz.topic} (${difficultyText[currentQuiz.difficulty] || currentQuiz.difficulty})`;
+    
+    document.getElementById('score-percentage').textContent = 
+        `${score.percentage}%`;
+    
+    document.getElementById('score-text').textContent = 
+        `${score.correct} iš ${score.total} teisingų atsakymų`;
+    
+    document.getElementById('grade-message').textContent = grade;
 }
 
 async function loadHistory() {
